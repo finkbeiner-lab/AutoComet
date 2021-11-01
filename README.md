@@ -1,6 +1,14 @@
-# Auto Comet: Algorithm that detects, segments, and quantifies the comets in the microscopy images
+# Auto Comet: a fully automated algorithm to analyze comet assays more accurately
 
-This project implements a high-throughput comet assay analysis algorithm to address the low throughput and inaccuracy of the open source and commercially available tools.
+Comet assays are a biochemical tool to analyze DNA damage based on the migration of broken DNA strands towards a positive electrode, which creates a ‘tail’ behind the cell that is used for DNA damage measurements. Our project AutoComet implements a high-throughput comet assay analysis algorithm to address the low throughput and inaccuracy of the open source and commercially available tools. This algorithm segments most comets in an image and effectively filters out overlapping comets and comets on the edge of an image, without the need of manual pre- or post-processing. The algorithm automatically calculates multiple comet measurements such as tail area and percentage of DNA in the tail.
+
+### Highlights:
+
+- Autocomet is a new open source program to analyze alkaline and neutral comet assays
+- Autocomet results are highly comparable to manual curation
+- Autocomet is more accurate than open source tools CellProfiler and OpenComet
+- Autocomet generates results in <3 min and reduces processing time by a tenfold
+- AutoComet is fully automated and eliminates all curator bias
 
 
 # Getting Started 
@@ -16,8 +24,7 @@ The project can be either cloned or downloaded to your device from [AutoComet gi
 - Pillow==8.2.0
 
 ## Installation
-You can find the Jupyter Notebook installation documentation
-[on ReadTheDocs](https://jupyter.readthedocs.io/en/latest/install.html). For a local installation, make sure you have
+You can find the [Jupyter Notebook installation](https://jupyter.readthedocs.io/en/latest/install.html) documentation on ReadTheDocs. For a local installation, make sure you have
 [pip installed](https://pip.readthedocs.io/en/stable/installing/) and run:
 
     $ pip install notebook
@@ -26,7 +33,7 @@ You may install dependencies using:
 
     $ pip install -r requirements.txt
 
-Or with the command
+Or install each depenency with the command:
 
     $ pip install 'dependency'
     
@@ -35,7 +42,7 @@ Or with the command
 Launch with:
 
     $ jupyter notebook
+    
+You can change the user input under the section **Input Parameters and preprocessing**
  
-## Authors
-
 ## Citing
