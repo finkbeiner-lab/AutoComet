@@ -43,6 +43,29 @@ Launch with:
 
     $ jupyter notebook
     
-You can change the user input under the section **Input Parameters and preprocessing**
+### Steps:
+
+1. **Input Parameters and preprocessing**
+AutoComet is tested on TIF format images. AutoComet converts images to the single channel grayscale images. 
+- Change input_path to the image directory that you want to analyze.
+- AutoComet requires that comets are oriented vertically. Flip and/or rotate images if needed so that comet head are on top and tail are extending toward the bottom of the image. Example input image:
+<img width="597" alt="Image" src="https://user-images.githubusercontent.com/88739975/140874798-9ccb1221-90e5-47c9-bf62-56f9d99d3252.png">
+
+- Change crop_dim (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in comet segmentation step and correct crop dimension if needed. 
+
+2. **Comet segmentation and filtering**
+During comet segmentation process, objects appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered.  Review Images and check on crop size. Tails should be included within the red rectangle box; if not, adjust crop dimension again. Example comet segmentation:
+
+<img width="967" alt="Segmentation Example" src="https://user-images.githubusercontent.com/88739975/140865552-3a08bec8-148f-4522-8e96-078e03be09e0.png">
+
+Additionally, these segmented regions are removed during the filtering process:
+- Tiny objects (min_area = 300) that are usually background noise and debris
+- Huge objects (max_area = 7000) that are usually clamps or non-comet objects
+- Segmented objects that are on the edge of the image or cannot be cropped into the dimension size
+- Segmented objects that appears in more than one crop
+
+3. **Comet Measurement**
+
  
+
 ## Citing
