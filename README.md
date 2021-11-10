@@ -99,4 +99,16 @@ AutoComet calculates several measurements:
 | Tail average intensity  | Average tail pixel intensity |
 | Tail DNA %  | Percentage of tail pixel intensity in comet |
 
+4. **Outputs**
+AutoComet generates a montage of all the comets and a cropped image for each comet that went through measurements at the end. AutoComet also generates measurement CSV contains the input file names and all the 14 comet measurements into the specified output folder.
+
+Example montage of comet crops:
+
+<img width="500" alt="montage Example" src="https://user-images.githubusercontent.com/88739975/141199493-c6f54555-2527-4295-bb51-fd54112b5f8c.png">
+
+Example comet measurement CSV:
+
+<img width="1104" alt="Csv example" src="https://user-images.githubusercontent.com/88739975/141056294-b7e08dc2-a0eb-4f43-93db-7a5388de0a63.png">
+
+
 ## Citing
