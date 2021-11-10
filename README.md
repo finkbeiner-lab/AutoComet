@@ -73,9 +73,12 @@ Additionally, by going through each comet crop, we want to remove regions that m
 
 AutoComet will then try to find the head of each comet and the entire body of the comet. AutoComet identify comet heads by finding the brightest pixel and comet body by finding all bright pixels above background. During the process, erosion and dilation is performed on the head to add extra pixels in an attempt to obtain a similar size as the head size within body segment. Example head and body detection: 
 
-<img width="249" alt="Comet detection with no tail" src="https://user-images.githubusercontent.com/88739975/141037269-a844b49b-53fa-474c-8c0a-1f33fa2c3df9.png">
-<img width="249" alt="Comet detection with tail" src="https://user-images.githubusercontent.com/88739975/141037187-78c71c49-fc43-44c0-bfc4-c7a7729ab469.png">
-<img width="249" alt="Comet detection with long tail" src="https://user-images.githubusercontent.com/88739975/141037371-835c3a10-2eb8-412c-ae2a-0c185f15aa37.png">
+<p float="middele">
+    <img width="32%" alt="Comet detection with no tail" src="https://user-images.githubusercontent.com/88739975/141037269-a844b49b-53fa-474c-8c0a-1f33fa2c3df9.png" />
+    <img width="32%" alt="Comet detection with tail" src="https://user-images.githubusercontent.com/88739975/141037187-78c71c49-fc43-44c0-bfc4-c7a7729ab469.png" />
+    <img width="32%" alt="Screen Shot 2021-11-09 at 6 22 39 PM" src="https://user-images.githubusercontent.com/88739975/141038031-d6462288-8718-4808-bfbf-6aa2fd165bc3.png"/>
+
+</p>    
 
 AutoComet calculates several measurements:
 
