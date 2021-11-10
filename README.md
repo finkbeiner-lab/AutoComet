@@ -46,6 +46,7 @@ Launch with:
 ### Steps:
 
 1. **Input Parameters and preprocessing**
+
 AutoComet is tested on TIF format images. AutoComet converts images to the single channel grayscale images. 
 - Change input_path to the image directory that you want to analyze.
 - AutoComet requires that comets are oriented vertically. Flip and/or rotate images if needed so that comet head are on top and tail are extending toward the bottom of the image. Example input image:
@@ -54,18 +55,42 @@ AutoComet is tested on TIF format images. AutoComet converts images to the singl
 - Change crop_dim (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in comet segmentation step and correct crop dimension if needed. 
 
 2. **Comet segmentation and filtering**
-During comet segmentation process, objects appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered.  Review Images and check on crop size. Tails should be included within the red rectangle box; if not, adjust crop dimension again. Example comet segmentation:
 
-<img width="967" alt="Segmentation Example" src="https://user-images.githubusercontent.com/88739975/140865552-3a08bec8-148f-4522-8e96-078e03be09e0.png">
+During comet segmentation process, objects appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered.  Review Images and check on crop size. Tails should be included within the red rectangle box; if not, adjust crop dimension again. During the segmentation process, these segmented regions are removed:
 
-Additionally, these segmented regions are removed during the filtering process:
-- Tiny objects (min_area = 300) that are usually background noise and debris
+- Tiny objects (min_area = 100) that are usually background noise and debris
 - Huge objects (max_area = 7000) that are usually clamps or non-comet objects
+These tiny and huge filtered objects will appear within gray rectanglar box under Segmented Mask image. Example comet segmentation and filtering:
+
+<img width="868" alt="Example2" src="https://user-images.githubusercontent.com/88739975/141028577-49818893-bbaf-4789-b421-305749c5649f.png">
+
+Additionally, by going through each comet crop, we want to remove regions that might not provide us the best information. Such as:
 - Segmented objects that are on the edge of the image or cannot be cropped into the dimension size
-- Segmented objects that appears in more than one crop
+- Segmented objects that appears in more than one crop, which might be a tail object
 
 3. **Comet Measurement**
 
- 
+AutoComet will then try to find the head of each comet and the entire body of the comet. AutoComet identify comet heads by finding the brightest pixel and comet body by finding all bright pixels above background. During the process, erosion and dilation is performed on the head to add extra pixels in an attempt to obtain a similar size as the head size within body segment. Example head and body detection: 
+
+![image](https://user-images.githubusercontent.com/88739975/141032518-09982ec6-6db7-465b-9630-eae1ef42f4a2.png)
+
+AutoComet calculates several measurements:
+
+ | Measurement  | Description |
+| ------------- | ------------- |
+| Head length  | Head length in pixels |
+| Tail length  | Tail length in pixels  |
+| Body length  | Entire comet length (head + tail) in pixels |
+| Comet area  | Sum of comet pixels  |
+| Comet DNA content  | Total comet pixel intensity  |
+| Comet average intensity  | Avergae comet pixel intensity  |
+| Head area  | Sum of head pixels |
+| Head DNA content  | Total head pixel intensity |
+| Head average intensity  | Average head pixel intensity |
+| Head DNA %  | Percentage of head pixel intensity in comet |
+| Tail area  | Sum of tail pixels |
+| Tail DNA content  | Total tail pixel intensity |
+| Tail average intensity  | Average tail pixel intensity |
+| Tail DNA %  | Percentage of tail pixel intensity in comet |
 
 ## Citing
