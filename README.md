@@ -50,7 +50,7 @@ Launch with:
 AutoComet is tested on TIF format images. AutoComet converts images to the single channel grayscale images. 
 - Change input_path to the image directory that you want to analyze.
 - AutoComet requires that comets are oriented vertically. Flip and/or rotate images if needed so that comet head are on top and tail are extending toward the bottom of the image. Example input image:
-<img width="597" alt="Image" src="https://user-images.githubusercontent.com/88739975/140874798-9ccb1221-90e5-47c9-bf62-56f9d99d3252.png">
+<img width="300" alt="Image" src="https://user-images.githubusercontent.com/88739975/140874798-9ccb1221-90e5-47c9-bf62-56f9d99d3252.png">
 
 - Change crop_dim (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in comet segmentation step and correct crop dimension if needed. 
 
@@ -60,9 +60,10 @@ During comet segmentation process, objects appear brighter than the background p
 
 - Tiny objects (min_area = 100) that are usually background noise and debris
 - Huge objects (max_area = 7000) that are usually clamps or non-comet objects
+
 These tiny and huge filtered objects will appear within gray rectanglar box under Segmented Mask image. Example comet segmentation and filtering:
 
-<img width="868" alt="Example2" src="https://user-images.githubusercontent.com/88739975/141028577-49818893-bbaf-4789-b421-305749c5649f.png">
+<img width="1000" alt="Example2" src="https://user-images.githubusercontent.com/88739975/141028577-49818893-bbaf-4789-b421-305749c5649f.png">
 
 Additionally, by going through each comet crop, we want to remove regions that might not provide us the best information. Such as:
 - Segmented objects that are on the edge of the image or cannot be cropped into the dimension size
@@ -72,7 +73,9 @@ Additionally, by going through each comet crop, we want to remove regions that m
 
 AutoComet will then try to find the head of each comet and the entire body of the comet. AutoComet identify comet heads by finding the brightest pixel and comet body by finding all bright pixels above background. During the process, erosion and dilation is performed on the head to add extra pixels in an attempt to obtain a similar size as the head size within body segment. Example head and body detection: 
 
-![image](https://user-images.githubusercontent.com/88739975/141032518-09982ec6-6db7-465b-9630-eae1ef42f4a2.png)
+<img width="249" alt="Comet detection with no tail" src="https://user-images.githubusercontent.com/88739975/141037269-a844b49b-53fa-474c-8c0a-1f33fa2c3df9.png">
+<img width="249" alt="Comet detection with tail" src="https://user-images.githubusercontent.com/88739975/141037187-78c71c49-fc43-44c0-bfc4-c7a7729ab469.png">
+<img width="249" alt="Comet detection with long tail" src="https://user-images.githubusercontent.com/88739975/141037371-835c3a10-2eb8-412c-ae2a-0c185f15aa37.png">
 
 AutoComet calculates several measurements:
 
