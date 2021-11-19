@@ -22,6 +22,7 @@ The project can be either cloned or downloaded to your device from [AutoComet gi
 - scipy==1.6.2
 - skimage==0.18.1
 - Pillow==8.2.0
+- import_ipynb
 
 ## Installation
 You can find the [Jupyter Notebook installation](https://jupyter.readthedocs.io/en/latest/install.html) documentation on ReadTheDocs. For a local installation, make sure you have
@@ -45,21 +46,33 @@ Launch with:
     
 ### Steps:
 
+There are two notebooks in the repository. **Main.ipynb** is the notebook for user to make changes and run the script, **CometAssayAlgorithm.ipynb** contains the functions used.
+
+0. Open Main.ipynb
+
 1. **Input Parameters and preprocessing**
 
-AutoComet is tested on TIF format images. AutoComet converts images to the single channel grayscale images. 
-- Change input_path to the image directory that you want to analyze.
-- AutoComet requires that comets are oriented vertically. Flip and/or rotate images if needed so that comet head are on top and tail are extending toward the bottom of the image. Example input image:
+- Change input_path to the image directory that you want to analyze
+- Change output_path to the directory that you want the output to be generated
+
+Autocomet requires that comets are oriented vertically. Example input image:
+
 <img width="300" alt="Image" src="https://user-images.githubusercontent.com/88739975/140874798-9ccb1221-90e5-47c9-bf62-56f9d99d3252.png">
 
-- Change crop_dim (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in comet segmentation step and correct crop dimension if needed. 
+- Perform `image_fipping` and set as `True` if comet heads are located upside down. Comet heads should be on top and tail are extending toward the bottom of the image. 
+- Perform `image_rotation` if comets are tilted. Change rotation angle in degrees. No changes if it's set to 0 degree. 
+- Preview images and modify `preview_images` to your desired number of images to check on preprocessed image. There will be no changes applied if no flipping/rotating was done.
+
+AutoComet is tested on TIF format images. It converts images to the single channel grayscale images.
+- Change `image_extension= 'tif'` to your image type
+- Change `crop_dim` (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in comet segmentation step and correct crop dimension if needed. 
 
 2. **Comet segmentation and filtering**
 
 During comet segmentation process, objects appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered.  Review Images and check on crop size. Tails should be included within the red rectangle box; if not, adjust crop dimension again. During the segmentation process, these segmented regions are removed:
 
-- Tiny objects (min_area = 100) that are usually background noise and debris
-- Huge objects (max_area = 7000) that are usually clamps or non-comet objects
+- Tiny objects (`min_area = 100`) that are usually background noise and debris
+- Huge objects (`max_area = 7000`) that are usually clamps or non-comet objects
 
 These tiny and huge filtered objects will appear within gray rectanglar box under Segmented Mask image. Example comet segmentation and filtering:
 
@@ -100,6 +113,7 @@ AutoComet calculates several measurements:
 | Tail DNA %  | Percentage of tail pixel intensity in comet |
 
 4. **Outputs**
+
 AutoComet generates a montage of all the comets and a cropped image for each comet that went through measurements at the end. AutoComet also generates measurement CSV contains the input file names and all the 14 comet measurements into the specified output folder.
 
 Example montage of comet crops:
