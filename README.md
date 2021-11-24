@@ -46,7 +46,7 @@ Launch with:
     
 ### Steps:
 
-There are two notebooks in the repository. **Main.ipynb** is the notebook for user to make changes and run the script, **CometAssayAlgorithm.ipynb** contains the functions used.
+There are two notebooks in the repository. **Main.ipynb** is the notebook for the user to make changes and run the script, **CometAssayAlgorithm.ipynb** contains the functions used.
 
 0. Open Main.ipynb
 
