@@ -48,7 +48,7 @@ Launch with:
 
 There are two notebooks in the repository. **Main.ipynb** is the notebook for the user to make changes and run the script, **CometAssayAlgorithm.ipynb** contains the functions used.
 
-0. Open Main.ipynb
+0. Open AutoComet-Main.ipynb
 
 1. **Input Parameters and preprocessing**
 
@@ -65,11 +65,11 @@ Autocomet requires that comets are oriented vertically. Example input image:
 
 AutoComet is tested on TIF format images. It converts images to the single channel grayscale images.
 - Change `image_extension= 'tif'` to your image type
-- Change `crop_dim` (crop dimension, default 273 height x 143 width) to make sure the entire comet is captured. Review in the comet segmentation step and correct the crop dimension if needed. 
+- Change `crop_dim` (crop dimension, default 273 height x 100 width) to make sure the entire comet is captured. Review in the comet segmentation step and correct the crop dimension if needed. 
 
 2. **Comet segmentation and filtering**
 
-During the comet segmentation process, objects that appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered out.  Review your images and check on the crop size. Tails should be included within the red rectanglar box; if not, adjust crop dimension again. During the segmentation process, these segmented regions are removed:
+During the comet segmentation process, objects that appear brighter than the background pixels are captured using binary thresholding. Images that have extremely bad intensity are filtered out entirely.  Review your images and check on the crop size. Tails should be included within the red rectanglar box; if not, adjust crop dimension again from previous step. During the segmentation process, these segmented regions are removed:
 
 - Tiny objects (`min_area = 100`) that are usually background noise and debris
 - Huge objects (`max_area = 7000`) that are usually clamps or non-comet objects
@@ -78,7 +78,7 @@ These tiny and huge filtered objects will appear within gray rectanglar boxes in
 
 <img width="1000" alt="Example2" src="https://user-images.githubusercontent.com/88739975/141028577-49818893-bbaf-4789-b421-305749c5649f.png">
 
-Additionally, by going through each comet crop, we want to remove regions that might not provide us the best information. Such as:
+Additionally, we will remove regions that might not provide us the best information. Such as:
 - Segmented objects that are on the edge of the image or cannot be cropped into the dimension size
 - Segmented objects that appear in more than one crop, which might be a tail-only object
 
